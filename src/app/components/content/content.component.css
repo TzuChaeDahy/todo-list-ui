@@ -1,0 +1,42 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--gray-600);
+}
+
+#first-section {
+  display: flex;
+  gap: 1rem;
+  margin-top: -2rem;
+}
+
+#input {
+  padding: 1rem 1rem;
+  background-color: var(--gray-500);
+  border-radius: 0.4rem;
+  border: none;
+  width: 40rem;
+}
+
+#button {
+  padding: 0 1rem;
+  background-color: var(--blue-dark);
+  border-radius: 0.4rem;
+  border: none;
+  font-weight: var(--font-bold);
+  color: var(--gray-100);
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#second-section {
+  margin-top: 4rem;
+}
+
+#task-stats {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,30 @@
+#header {
+  background: var(--gray-700);
+  padding: 5rem 0;
+}
+
+#logo-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#logo {
+  width: 2rem;
+}
+
+#title {
+  font-size: var(--font-bigger);
+  display: flex;
+  gap: 0.5rem;
+}
+
+#title-one {
+  font-size: inherit;
+  color: var(--purple);
+}
+
+#title-two {
+  font-size: inherit;
+  color: var(--blue);
+}
