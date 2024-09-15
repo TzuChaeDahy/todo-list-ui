@@ -1,6 +1,6 @@
 <main id="container">
   <section id="first-section">
-    <input type="text" id="input"/>
+    <input type="text" id="input" placeholder="Adicione uma nova tarefa"/>
     <button id="button">
       <span>Criar</span>
       <img src="assets/add.svg" alt="add icon">
@@ -8,11 +8,11 @@
   </section>
   <section id="second-section">
     <div id="task-stats">
-      <app-task-stats title="Tarefas criadas" [quantity]=10></app-task-stats>
-      <app-task-stats title="Tarefas concluidas" [quantity]=10></app-task-stats>
+      <app-task-stats [title]="'Tarefas criadas'" [quantity]=10></app-task-stats>
+      <app-task-stats [title]="'Tarefas concluidas'" [quantity]=10></app-task-stats>
     </div>
-    <div>
-
+    <div id="task-items">
+      <app-task-item *ngFor="let task of tasks" [task]="task"></app-task-item>
     </div>
   </section>
 </main>

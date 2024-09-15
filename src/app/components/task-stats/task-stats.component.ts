@@ -11,9 +11,7 @@ import {Component, Input} from '@angular/core';
 })
 export class TaskStatsComponent {
   @Input()
-  title: string = "";
+  title!: string;
   @Input()
-  quantity: number = 0;
-  @Input()
-  color: string = "";
+  quantity!: number;
 }

@@ -1,0 +1,33 @@
+#container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem;
+  background-color: var(--gray-500);
+  border: 1px solid var(--gray-400);
+  border-radius: 0.5rem;
+}
+
+#content-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#title {
+  color: var(--gray-100);
+  width: 45rem;
+}
+
+#bin-button {
+  display: flex;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--gray-500);
+  border-radius: 0.25rem;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+#bin-button:hover {
+  border: 1px solid var(--red-danger);
+}

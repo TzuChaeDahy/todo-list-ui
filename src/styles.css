@@ -37,3 +37,14 @@
   line-height: var(--line-height);
   font-size: var(--font-small);
 }
+
+html, body {
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-600);
+}
+
