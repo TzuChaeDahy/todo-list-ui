@@ -13,9 +13,13 @@
   gap: 1rem;
 }
 
-#title {
+#normal-title {
   color: var(--gray-100);
-  width: 45rem;
+}
+
+#complete-title {
+  color: var(--gray-300);
+  text-decoration: line-through;
 }
 
 #bin-button {

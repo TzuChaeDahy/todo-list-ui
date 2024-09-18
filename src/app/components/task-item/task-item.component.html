@@ -1,9 +1,9 @@
 <div id="container">
   <div id="content-container">
-    <input type="checkbox">
-    <p id="title">{{ this.task.title }}</p>
+    <input type="checkbox" [checked]="task.status" (change)="changeStatus()">
+    <p [id]="!task.status ? 'normal-title' : 'complete-title'">{{ this.task.title }}</p>
   </div>
-  <button id="bin-button">
+  <button id="bin-button" (click)="removeItem()">
     <img src="assets/bin.svg" alt="bin icon">
   </button>
 </div>

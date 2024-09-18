@@ -1,18 +1,18 @@
 <main id="container">
-  <section id="first-section">
-    <input type="text" id="input" placeholder="Adicione uma nova tarefa"/>
-    <button id="button">
+  <form id="first-section" (submit)="createTask($event, input)">
+    <input type="text" id="input" placeholder="Adicione uma nova tarefa" #input/>
+    <button id="button" type="submit">
       <span>Criar</span>
       <img src="assets/add.svg" alt="add icon">
     </button>
-  </section>
+  </form>
   <section id="second-section">
     <div id="task-stats">
-      <app-task-stats [title]="'Tarefas criadas'" [quantity]=10></app-task-stats>
-      <app-task-stats [title]="'Tarefas concluidas'" [quantity]=10></app-task-stats>
+      <app-task-stats [title]="'Tarefas criadas'" [quantity]="getAllTasksQuantity()"></app-task-stats>
+      <app-task-stats [title]="'Tarefas concluidas'" [quantity]="getAllCompletedTasksQuantity()"></app-task-stats>
     </div>
     <div id="task-items">
-      <app-task-item *ngFor="let task of tasks" [task]="task"></app-task-item>
+      <app-task-item *ngFor="let task of tasks" [task]="task" (removeEvent)="removeTask(task.id)" (statusEvent)="changeStatus(task.id)"></app-task-item>
     </div>
   </section>
 </main>
