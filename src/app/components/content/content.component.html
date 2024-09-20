@@ -12,7 +12,9 @@
       <app-task-stats [title]="'Tarefas concluidas'" [quantity]="getAllCompletedTasksQuantity()"></app-task-stats>
     </div>
     <div id="task-items">
-      <app-task-item *ngFor="let task of tasks" [task]="task" (removeEvent)="removeTask(task.id)" (statusEvent)="changeStatus(task.id)"></app-task-item>
+      @for (task of tasks; track task.id) {
+        <app-task-item [task]="task" (removeEvent)="removeTask(task.id)" (statusEvent)="changeStatus(task.id)"></app-task-item>
+      }
     </div>
   </section>
 </main>

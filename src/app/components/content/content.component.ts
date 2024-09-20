@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {TaskStatsComponent} from "../task-stats/task-stats.component";
 import {TaskItemComponent} from "../task-item/task-item.component";
 import {CommonModule} from "@angular/common";
 import Task from '../../models/Task';
+import {TaskService} from "../../services/task.service";
 
 @Component({
   selector: 'app-content',
@@ -17,6 +18,7 @@ import Task from '../../models/Task';
 })
 export class ContentComponent implements OnInit {
   tasks: Task[] = [];
+  taskService: TaskService = inject(TaskService)
 
   getAllTasksQuantity(): number {
     return this.tasks.length;
@@ -27,29 +29,60 @@ export class ContentComponent implements OnInit {
   }
 
   removeTask(id: string): void {
-    this.tasks = this.tasks.filter(task => task.id != id);
-  }
-
-  changeStatus(id: string): void {
-    this.tasks.map(task => {
-      if (task.id == id) {
-        task.status = !task.status;
+    this.taskService.removeTask(id).subscribe({
+      next: (_) => {
+        this.tasks = this.tasks.filter(task => task.id != id);
       }
     });
   }
 
-  createTask(event: Event, input: HTMLInputElement): void {
+  changeStatus(id: string): void {
+    let currentTask: Task;
+    this.taskService.changeStatus(id).subscribe({
+      next: (response) => {
+        currentTask = response;
+
+        this.tasks.map(task => {
+          if (task.id == currentTask.id) {
+            task.status = currentTask.status;
+          }
+        });
+      }
+    });
+
+
+  }
+
+  createTask(event: SubmitEvent, input: HTMLInputElement): void {
     event.preventDefault();
-    this.tasks.push({
-      id: (Math.random() * 100).toString(),
-      title: input.value,
-      status: false
+
+    if (input.value == "") {
+
+      return;
+    }
+
+    let task: Task;
+    this.taskService.createTask(input.value).subscribe({
+      next: (response) => {
+        task = response;
+
+        this.tasks.push({
+          id: task.id,
+          title: task.title,
+          status: task.status
+        });
+      }
     });
 
     input.value = "";
   }
 
   ngOnInit(): void {
-    console.log("Hello World!")
+    this.taskService.retrieveAllTasks().subscribe({
+        next: (response) => {
+          this.tasks = response;
+        }
+      }
+    );
   }
 }
