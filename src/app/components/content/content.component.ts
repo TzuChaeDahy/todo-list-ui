@@ -19,6 +19,7 @@ import {TaskService} from "../../services/task.service";
 export class ContentComponent implements OnInit {
   tasks: Task[] = [];
   taskService: TaskService = inject(TaskService)
+  isButtonDisabled: boolean = true;
 
   getAllTasksQuantity(): number {
     return this.tasks.length;
@@ -26,6 +27,10 @@ export class ContentComponent implements OnInit {
 
   getAllCompletedTasksQuantity(): number {
     return this.tasks.filter(task => task.status).length;
+  }
+
+  onInput(value: string) {
+    this.isButtonDisabled = value.length === 0;
   }
 
   removeTask(id: string): void {
@@ -57,7 +62,6 @@ export class ContentComponent implements OnInit {
     event.preventDefault();
 
     if (input.value == "") {
-
       return;
     }
 
@@ -75,6 +79,7 @@ export class ContentComponent implements OnInit {
     });
 
     input.value = "";
+    this.isButtonDisabled = true;
   }
 
   ngOnInit(): void {

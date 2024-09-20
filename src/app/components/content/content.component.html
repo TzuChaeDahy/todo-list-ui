@@ -1,7 +1,7 @@
 <main id="container">
   <form id="first-section" (submit)="createTask($event, input)">
-    <input type="text" id="input" placeholder="Adicione uma nova tarefa" #input/>
-    <button id="button" type="submit">
+    <input type="text" id="input" placeholder="Adicione uma nova tarefa" (input)="onInput(input.value)" #input/>
+    <button id="button" type="submit" [disabled]="isButtonDisabled">
       <span>Criar</span>
       <img src="assets/add.svg" alt="add icon">
     </button>
@@ -12,8 +12,18 @@
       <app-task-stats [title]="'Tarefas concluidas'" [quantity]="getAllCompletedTasksQuantity()"></app-task-stats>
     </div>
     <div id="task-items">
-      @for (task of tasks; track task.id) {
-        <app-task-item [task]="task" (removeEvent)="removeTask(task.id)" (statusEvent)="changeStatus(task.id)"></app-task-item>
+      @if (tasks.length > 0) {
+        @for (task of tasks; track task.id) {
+          <app-task-item [task]="task" (removeEvent)="removeTask(task.id)" (statusEvent)="changeStatus(task.id)"></app-task-item>
+        }
+      } @else {
+        <section id="no-task-container">
+          <img src="assets/board.svg" alt="board icon" id="no-task-icon">
+          <div id="no-task-wrapper">
+            <h4 id="no-task-title">Você ainda não tem tarefas cadastradas</h4>
+            <p id="no-task-subtitle">Crie tarefas e organize seus itens a fazer</p>
+          </div>
+        </section>
       }
     </div>
   </section>
